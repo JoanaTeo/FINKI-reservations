@@ -1,27 +1,42 @@
 package com.models;
 
-import javax.jws.soap.SOAPBinding;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import java.util.List;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
+import java.util.List;
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Room {
     @Id
-    Integer id;
+    @GeneratedValue(generator="system-uuid")
+    @GenericGenerator(name="system-uuid", strategy = "uuid")
+    String id;
+    String name;
     Integer seats;
-    @ManyToOne
-    User creator;
+    Building building;
     @OneToMany(mappedBy = "room")
     List<Reservation> reservations;
-    public Integer getId() {
-        return id;
+
+    public Room(String name, Integer seats, Building building) {
+        this.name = name;
+        this.seats = seats;
+        this.building = building;
+    }
+    public Room(){}
+
+    public Room(String room) {
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Integer getSeats() {
@@ -30,5 +45,29 @@ public class Room {
 
     public void setSeats(Integer seats) {
         this.seats = seats;
+    }
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
+    }
+
+    public Building getBuilding() {
+        return building;
+    }
+
+    public void setBuilding(Building building) {
+        this.building = building;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

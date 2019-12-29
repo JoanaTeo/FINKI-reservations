@@ -23,9 +23,17 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '1.2.5.RELEASE'
+    compile group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.3'
+
     compile('javax.xml.bind:jaxb-api:2.3.0')
+   // compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '2.2.0.RELEASE'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'mysql:mysql-connector-java'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
+    compileOnly 'org.projectlombok:lombok:1.18.4'
+    annotationProcessor 'org.projectlombok:lombok:1.18.4'
+
 }

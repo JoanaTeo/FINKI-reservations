@@ -1,0 +1,7 @@
+<div xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <div class="col-sm-12 col-md-12 col-lg-12" th:each="reservation : ${reservations}">
+        <span th:text="${reservation.getStartDate()}"></span>
+        <span>do</span>
+        <span th:text="${reservation.getEndDate()}"></span>
+    </div>
+</div>

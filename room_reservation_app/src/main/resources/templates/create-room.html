@@ -1,0 +1,32 @@
+<form action="/rooms/create" method="POST" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <div class="form-group">
+        <label for="roomBuilding">Room Name</label>
+        <select name="building"
+                id="roomBuilding"
+                required="true"
+                class="form-control">
+            <option th:each="building: ${T(com.models.Building).values()}"
+                    th:value="${building}"
+                    th:text="${building}"></option>
+
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="roomName">Room Name</label>
+        <input type="text"
+               name="name"
+               class="form-control"
+               required="true"
+               id="roomName" placeholder="Room Name">
+    </div>
+    <div class="form-group">
+        <label for="roomDescription">Room Seats</label>
+        <input name="seats"
+                  id="roomDescription"
+                  class="form-control"
+                    type="number">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
