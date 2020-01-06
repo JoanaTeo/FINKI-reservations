@@ -32,8 +32,15 @@ public class RoomsController {
 
     @GetMapping("")
     public String listRooms(HttpServletRequest request) {
-        createRoom("Ime",Building.TMF, 11);
-        createRoom("ppp",Building.MF, 11);
+        createRoom("123",Building.TMF, 11);
+        createRoom("223",Building.TMF, 11);
+        createRoom("117",Building.MF, 11);
+        createRoom("116",Building.MF, 11);
+        createRoom("3.2",Building.B, 11);
+        createRoom("3.1",Building.B, 11);
+        createRoom("200AB",Building.LAB, 11);
+        createRoom("200v",Building.LAB, 11);
+
         List<Room> rooms = this.roomsService.getAllRooms();
         Map<Building, List<Room>> buildingRooms = rooms.stream().collect(Collectors.groupingBy(a -> a.getBuilding()));
         request.setAttribute("rooms", rooms);

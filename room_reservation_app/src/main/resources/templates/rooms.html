@@ -3,90 +3,79 @@
      method="POST" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <div class="row">
         <div th:if="${param.success}">
-            <div class="alert alert-info">You've successfully registered
-                to our awesome app!</div>
+            <div class="alert alert-success">Вашата резервација беше успешна</div>
         </div>
         <div th:if="${param.no}">
-            <div class="alert alert-info">noooo!</div>
+            <div class="alert alert-danger">Веќе постои резервација во овој термин!
+                <a th:href="@{/reservations/all}">Провери резервации </a>
+            </div>
         </div>
-    <div class="col" th:each="entry: ${buildingRooms}">
-        <h3 th:text="${entry.key}" class="m-3"></h3>
-        <div class="row" th:each="room : ${entry.value}" >
-                    <div class="col" >
-                        <button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModal" th:data-whatever="${room.name}"
-                                th:text="${room.name}">Open modal for @mdo</button>
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
+    <div class="col-lg-3 col-md-4 col-sm-6 " th:each="entry: ${buildingRooms}">
 
-<!--                                        <form>-->
-<!--                                            <div class="form-group">-->
-<!--                                                <label for="recipient-name" class="col-form-label">Recipient:</label>-->
-<!--                                                <input type="text" class="form-control" id="recipient-name">-->
-<!--                                            </div>-->
-<!--                                            <div class="form-group">-->
-<!--                                                <label for="message-text" class="col-form-label">Message:</label>-->
-<!--                                                <textarea class="form-control" id="message-text"></textarea>-->
-<!--                                            </div>-->
-<!--                                        </form>-->
-                                         <form method="POST"
-                                               onsubmit="return confirm('Are you sure that you whant to reserve this term?')"
-                                               th:action="@{/rooms/reserve/{name}(name=${room.name})}">
-                                                 <div class="modal-body">
-                                             <div class="input-group date datepicker" data-provide="datepicker">
-                                                 <input type="text" class="form-control" name="date">
-                                                 <div class="input-group-addon">
-                                                     <span class="glyphicon glyphicon-th"></span>
-                                                 </div>
-                                             </div>
-                                             <div class="row">
-<!--                                                 <div class="row" th:each="term : ${ter}" >-->
-                                                 <div class="col">
-                                                     <span>Од:</span>
-                                                     <input type="number" name="from"  min="8" max="20">
-                                                 </div>
-                                                 <div class="col">
-                                                     <span>До:</span>
-                                                     <input type="number" name="to" min="8" max="20">
-                                                 </div>
-                                             </div>
+                        <div class="row" >
+                            <div class="col-sm-6 col-md-4" style=" padding-bottom: 0px">
+                                <div class="thumbnail" style="width: 250px; padding-bottom: 0px">
+                                    <div class="caption text-center" style="padding-bottom: 0px">
+                                        <h3 th:text="${entry.key}" class="text-center" style=" margin-top: 10px;">Thumbnail label</h3>
+                                        <div  th:each="room : ${entry.value}">
+                                            <p class=" border border-solid" style="margin-left: -13px;cursor:pointer; margin-bottom: 0px; margin-right: -13px;font-size:20px; padding: 6px;
+                                             border: solid #ccc;
+                                            border-width: 1px"
+                                                    type="button"  data-toggle="modal"
+                                                    data-target="#exampleModal" th:data-whatever="${room.name}"
+                                                    th:text="${room.name}">
+                                            </p>
+
+                                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <form method="POST"
+                                                          th:action="@{/rooms/reserve/{name}(name=${room.name})}">
+                                                        <div class="modal-body">
+                                                            <div class="input-group date datepicker" data-provide="datepicker">
+                                                                <input type="text" class="form-control" name="date">
+                                                                <div class="input-group-addon">
+                                                                    <span class="glyphicon glyphicon-th"></span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <!--                                                 <div class="row" th:each="term : ${ter}" >-->
+                                                                <div class="col">
+                                                                    <span>Од:</span>
+                                                                    <input type="number" name="from"  min="8" max="20">
+                                                                </div>
+                                                                <div class="col">
+                                                                    <span>До:</span>
+                                                                    <input type="number" name="to" min="8" max="20">
+                                                                </div>
+                                                            </div>
 
 
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-primary">Reserve</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
+
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Reserve</button>
-                                    </div>
-                                </form>
                                 </div>
-                            </div>
-                        </div>
-<!--                            <h4  class="margin-10-important room-box"></h4>-->
+
+
                     </div>
         </div>
-<!--                                <a th:href="@{/rooms/{name}(name=${room.name})}"-->
-<!--                                   class="btn btn-primary"-->
-<!--                                   title="Уреди">-->
-<!--                                    <i class="fa fa-fw fa-edit"></i>-->
-<!--                                </a>-->
-<!--                                <form method="POST"-->
-<!--                                      onsubmit="return confirm('Are you sure that you whant to delete this room?')"-->
-<!--                                      th:action="@{/rooms/{name}/delete(name=${room.name})}">-->
-<!--                                    <button class="btn btn-danger" title="Избриши">-->
-<!--                                        <i class="fa fa-fw fa-trash"></i>-->
-<!--                                    </button>-->
-<!--                                </form>-->
-<!--                    <div class="card-body">-->
-<!--                        <div class="card-text" th:text="${room.seats}">-->
 
                         </div>
                 </div>
          </div>
-    </div></div>
-</div>
+

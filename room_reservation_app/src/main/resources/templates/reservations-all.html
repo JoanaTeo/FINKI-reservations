@@ -1,37 +1,59 @@
-<div xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-    <form method="POST"
-          th:action="@{/reservations/all}">
-            <div class="input-group date datepicker" data-provide="datepicker" >
-                <input type="text" class="form-control" name="date">
-                <div class="input-group-addon">
-                    <span class="glyphicon glyphicon-th"></span>
+<div class="container" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form method="POST"
+                  th:action="@{/reservations/all}">
+                <label for="date">Датум</label>
+                <div class="input-group date datepicker" data-provide="datepicker" >
+
+                    <input type="text" class="form-control" name="date" id="date">
+                    <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-th"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="roomName">Просторија</label>
+                    <select name="roomName"
+                            id="roomName"
+                            required="true"
+                            class="form-control">
+                        <option th:each="room: ${roomNames}"
+                                th:value="${room.name}"
+                                th:text="${room.name}"></option>
+
+                    </select>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <button type="submit" class="form-control btn btn-primary">Провери</button>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+            <div class="row" th:each="entry : ${roomReservations}">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <h3 th:text="${entry.key}" class="text-center"></h3>
+                </div>
+
+                <div class="col-sm-12 col-md-12 col-lg-12" >
+                    <ul class="list-group" >
+                        <li class="list-group-item text-center" th:each="reservation : ${entry.value}" >
+                            <p>
+                                <b th:text="${reservation.getStartDate()}"></b>
+                                <span>-</span>
+                                <b th:text="${reservation.getEndDate()}"></b>
+                                <span>резервирано од</span>
+                                <span th:text="${reservation.getUser().getFirstName()}"></span>
+                                <span th:text="${reservation.getUser().getLastName()}"></span>
+                            </p>
+                        </li>
+                    </ul>
+
                 </div>
             </div>
-        <div class="form-group">
-            <label for="roomName">Room Name</label>
-            <select name="roomName"
-                    id="roomName"
-                    required="true"
-                    class="form-control">
-                <option th:each="room: ${roomNames}"
-                        th:value="${room.name}"
-                        th:text="${room.name}"></option>
-
-            </select>
-        </div>
-            <button type="submit" class="btn btn-primary">Check</button>
-    </form>
-    <div class="row" th:each="entry : ${roomReservations}">
-        <div class="col-sm-12 col-md-12 col-lg-12">
-            <h3 th:text="${entry.key}"></h3>
-        </div>
-        <div class="col-sm-12 col-md-12 col-lg-12" th:each="reservation : ${entry.value}">
-            <span th:text="${reservation.getStartDate()}"></span>
-            <span>do</span>
-            <span th:text="${reservation.getStartDate()}"></span>
-            <span th:text="${reservation.getUser().getFirstName()}"></span>
-
-
         </div>
     </div>
 </div>

@@ -65,17 +65,17 @@ public class ReservationsController {
 //    }
     @GetMapping("/building")
     public ModelAndView showReservationsByBuilding(@RequestParam String building) {
-        List<Room> room = this.roomsService.getRoomsByBuilding(Building.valueOf(building));
-//        Map<String, List<Reservation>> roomsReservation = reservations.stream().
-////                collect(Collectors.groupingBy(a -> a.getRoom().getName()));
-        List rooms = new ArrayList();
-        rooms.add("dsada");
-        rooms.add("dsada2");
-
+        List<Room> rooms = this.roomsService.getRoomsByBuilding(Building.valueOf(building));
         ModelAndView modelAndView = new ModelAndView("rooms-layout");
         modelAndView.addObject("bodyContent", "reservations-building");
         modelAndView.addObject("rooms", rooms);
+        modelAndView.addObject("building", building);
         return modelAndView;
+    }
+    @GetMapping("/delete/{id}")
+    public String deleteReservation(@PathVariable String id) {
+        this.reservationsService.deleteReservation(id);
+        return "redirect:/reservations/user";
     }
     @RequestMapping(value = "/all", method = RequestMethod.POST)
     public ModelAndView showReservationsByDateAndRoom(@RequestParam @DateTimeFormat(pattern="yyyy-MM-dd")String date,
