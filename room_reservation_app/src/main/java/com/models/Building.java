@@ -8,6 +8,6 @@ import lombok.Getter;
 public enum Building {
     MF,
     TMF,
-    B,
-    LAB
+    Бараки,
+    Лаборатории
 }

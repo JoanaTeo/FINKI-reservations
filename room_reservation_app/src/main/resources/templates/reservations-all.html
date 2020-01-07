@@ -42,9 +42,9 @@
                     <ul class="list-group" >
                         <li class="list-group-item text-center" th:each="reservation : ${entry.value}" >
                             <p>
-                                <b th:text="${reservation.getStartDate()}"></b>
-                                <span>-</span>
-                                <b th:text="${reservation.getEndDate()}"></b>
+
+                                <span><b th:text="${reservation.getStartDate()}"></b>h-<b th:text="${reservation.getEndDate()}"></b>h</span>
+
                                 <span>резервирано од</span>
                                 <span th:text="${reservation.getUser().getFirstName()}"></span>
                                 <span th:text="${reservation.getUser().getLastName()}"></span>

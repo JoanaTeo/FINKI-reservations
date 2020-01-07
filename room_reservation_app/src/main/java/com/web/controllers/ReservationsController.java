@@ -42,6 +42,7 @@ public class ReservationsController {
         List<Reservation> reservations = this.reservationsService.findReservationsByUser(user.getUsername());
         ModelAndView modelAndView = new ModelAndView("rooms-layout");
         modelAndView.addObject("bodyContent", "reservations-user");
+        modelAndView.addObject("userName", principal.getName());
         modelAndView.addObject("reservations", reservations);
         return modelAndView;
     }
@@ -64,11 +65,13 @@ public class ReservationsController {
 //        return modelAndView;
 //    }
     @GetMapping("/building")
-    public ModelAndView showReservationsByBuilding(@RequestParam String building) {
+    public ModelAndView showReservationsByBuilding(@RequestParam String building, Principal principal) {
         List<Room> rooms = this.roomsService.getRoomsByBuilding(Building.valueOf(building));
         ModelAndView modelAndView = new ModelAndView("rooms-layout");
         modelAndView.addObject("bodyContent", "reservations-building");
         modelAndView.addObject("rooms", rooms);
+        modelAndView.addObject("userName", principal.getName());
+
         modelAndView.addObject("building", building);
         return modelAndView;
     }
@@ -79,10 +82,12 @@ public class ReservationsController {
     }
     @RequestMapping(value = "/all", method = RequestMethod.POST)
     public ModelAndView showReservationsByDateAndRoom(@RequestParam @DateTimeFormat(pattern="yyyy-MM-dd")String date,
-                                                      @RequestParam String roomName) throws ParseException {
+                                                      @RequestParam String roomName, Principal principal) throws ParseException {
 
         ModelAndView modelAndView = new ModelAndView("rooms-layout");
         modelAndView.addObject("roomNames", this.roomsService.findAllRooms());
+        modelAndView.addObject("userName", principal.getName());
+
         modelAndView.addObject("bodyContent", "reservations-all");
         if(roomName=="" && date!="") {
             List<Reservation> reservations = this.reservationsService.findReservationsByDate(date);
@@ -98,10 +103,12 @@ public class ReservationsController {
 
     }
     @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public ModelAndView showDatePickerForReservation() {
+    public ModelAndView showDatePickerForReservation(Principal principal) {
         ModelAndView modelAndView = new ModelAndView("rooms-layout");
         modelAndView.addObject("roomNames", this.roomsService.findAllRooms());
         modelAndView.addObject("bodyContent", "reservations-all");
+        modelAndView.addObject("userName", principal.getName());
+
         return modelAndView;
     }
 }

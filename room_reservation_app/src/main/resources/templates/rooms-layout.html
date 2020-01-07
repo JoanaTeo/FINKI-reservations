@@ -42,9 +42,11 @@
             </a>
             </li>
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Име на корисник <b class="fa fa-angle-down"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" th:text="${userName}"> Име на корисник <b class="fa fa-angle-down"></b></a>
                 <ul class="dropdown-menu">
-                    <<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+                    <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Одјави се</a></li>
+                    <li class="divider"></li>
+                    <li sec:authorize="isAuthenticated()"><a th:href="@{/rooms/new}">Креирај просторија</a></li>
         </ul>
             </li>
         </ul>
@@ -63,7 +65,7 @@
                     <a th:href="@{/reservations/all}"><i class="fa fa-fw fa-user-plus"></i>  Резервации </a>
                 </li>
                 <li>
-                    <a th:href="@{/reservations/user}"><i class="fa fa-fw fa-paper-plane-o"></i> Профил </a>
+                    <a th:href="@{/reservations/user}"><i class="fa fa-fw fa-paper-plane-o"></i> Мои резервации </a>
                 </li>
             </ul>
         </div>
