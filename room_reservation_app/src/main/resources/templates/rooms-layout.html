@@ -17,7 +17,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/locale/pt-br.js"></script>    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
     <link rel="stylesheet" type="text/css" th:href="@{/nav-bar.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/all.css}" />
-    <script th:src="@{/nav-bar.js}"></script>
 </head>
 <body>
 <div id="throbber" style="display:none; min-height:120px;"></div>
@@ -46,7 +45,7 @@
                 <ul class="dropdown-menu">
                     <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Одјави се</a></li>
                     <li class="divider"></li>
-                    <li sec:authorize="isAuthenticated()"><a th:href="@{/rooms/new}">Креирај просторија</a></li>
+                    <li ><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/rooms/new}">Креирај просторија</a></li>
         </ul>
             </li>
         </ul>
@@ -87,4 +86,5 @@
     <!-- /#page-wrapper -->
 </div><!-- /#wrapper -->
 </body>
+<script th:src="@{/nav-bar.js}"></script>
 </html>

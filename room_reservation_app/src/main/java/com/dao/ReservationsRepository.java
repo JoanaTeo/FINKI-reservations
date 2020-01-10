@@ -1,5 +1,6 @@
 package com.dao;
 
+import com.google.api.client.util.DateTime;
 import com.models.Building;
 import com.models.Reservation;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,10 +15,12 @@ public interface ReservationsRepository extends JpaRepository<Reservation,String
 
     List<Reservation> findAllByUserUsername(String id);
 
-    List<Reservation> findByDateAndRoomName(String date, String roomName);
+    List<Reservation> findByStartDateAndRoomName(DateTime date, String roomName);
     @Query("select c from Reservation c " +
             "WHERE c.room.building like :building")
     List<Reservation> findReservationsByBuilding(@Param("building") Building building);
-
-    List<Reservation> findByDate(String date);
+    @Query("select c from Reservation c " +
+            "WHERE c.room.name like :roomName and c.startDate in :date")
+    List<Reservation> findReservationsByDateAndRoom(@Param("date")List date, @Param("roomName")String roomName);
+    List<Reservation> findByStartDate(DateTime date);
 }

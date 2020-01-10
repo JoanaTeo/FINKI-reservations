@@ -32,7 +32,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/webjars/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().defaultSuccessUrl("/rooms", true)
+                .formLogin().defaultSuccessUrl("/login/google", true)
                 .loginPage("/login")
                 .permitAll()
                 .and()
@@ -60,6 +60,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(authenticationProvider());
+    }
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth
+                .inMemoryAuthentication()
+                .withUser("user").password("{noop}pass").roles("USER")
+                .and()
+                .withUser("admin").password("{noop}pass").roles("ADMIN");
     }
 
 }

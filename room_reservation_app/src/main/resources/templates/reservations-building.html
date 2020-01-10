@@ -36,8 +36,21 @@
                                             </div>
                                             <form method="POST"
                                                   onsubmit="return confirm('Are you sure that you whant to reserve this term?')"
-                                                  th:action="@{/rooms/reserve/{name}(name=${room.name})}">
+                                                  th:action="@{/rooms/reserve}">
                                                 <div class="modal-body">
+                                                    <input class="nameRoom" name="name" hidden>
+                                                    <div class="form-group">
+                                                        <label for="description">Опис</label>
+                                                        <select name="description"
+                                                                id="description"
+                                                                required="true"
+                                                                class="form-control">
+                                                            <option th:each="description: ${T(com.models.ReservationDescription).values()}"
+                                                                    th:value="${description}"
+                                                                    th:text="${description}"></option>
+
+                                                        </select>
+                                                    </div>
                                                     <div class="input-group date datepicker" data-provide="datepicker">
                                                         <input type="text" class="form-control" name="date">
                                                         <div class="input-group-addon">
@@ -50,10 +63,10 @@
                                                             <span>Од:</span>
                                                             <input type="number" name="from"  min="8" max="20">
                                                         </div>
-                                                        <div class="col">
-                                                            <span>До:</span>
-                                                            <input type="number" name="to" min="8" max="20">
-                                                        </div>
+<!--                                                        <div class="col">-->
+<!--                                                            <span>До:</span>-->
+<!--                                                            <input type="number" name="to" min="8" max="20">-->
+<!--                                                        </div>-->
                                                     </div>
 
 

@@ -1,10 +1,8 @@
 package com.web.controllers;
 
 import com.dao.UserRepository;
-import com.models.Building;
-import com.models.Reservation;
-import com.models.Room;
-import com.models.User;
+import com.google.api.client.util.DateTime;
+import com.models.*;
 import com.services.ReservationsService;
 import com.services.RoomsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +33,8 @@ public class ReservationsController {
     UserRepository usersRepository;
     @Autowired
     RoomsService roomsService;
+    @Autowired
+    Code code;
 
     @GetMapping("/user")
     public ModelAndView showReservationsByUser(Principal principal) {
@@ -46,24 +46,6 @@ public class ReservationsController {
         modelAndView.addObject("reservations", reservations);
         return modelAndView;
     }
-//    @GetMapping("/{room}")
-//    public ModelAndView showReservationsForRoom(@PathVariable String room) {
-//        List<Reservation>
-//        ModelAndView modelAndView = new ModelAndView("rooms-layout");
-//        modelAndView.addObject("bodyContent", "reservations-room");
-//        modelAndView.addObject("room", room);
-//        modelAndView.addObject("reservations", reservations);
-//        return modelAndView;
-//    }
-//    @PostMapping("/{room}")
-//    public ModelAndView showReservationsForRoomPost(@PathVariable String room, @RequestParam @DateTimeFormat(pattern="yyyy-MM-dd")String date) {
-//        List<Reservation> reservations = this.reservationsService.findReservationsByDateAndRoomName(date, room);
-//        ModelAndView modelAndView = new ModelAndView("rooms-layout");
-//        modelAndView.addObject("bodyContent", "reservations-room");
-//        modelAndView.addObject("room", room);
-//        modelAndView.addObject("reservations", reservations);
-//        return modelAndView;
-//    }
     @GetMapping("/building")
     public ModelAndView showReservationsByBuilding(@RequestParam String building, Principal principal) {
         List<Room> rooms = this.roomsService.getRoomsByBuilding(Building.valueOf(building));
@@ -76,7 +58,9 @@ public class ReservationsController {
         return modelAndView;
     }
     @GetMapping("/delete/{id}")
-    public String deleteReservation(@PathVariable String id) {
+    public String deleteReservation(@PathVariable String id) throws Exception {
+        Reservation r= this.reservationsService.findReservationById(id).orElseThrow(Exception::new);
+        this.code.client.events().delete(r.getRoom().getCalendarId(), r.getEventId()).execute();
         this.reservationsService.deleteReservation(id);
         return "redirect:/reservations/user";
     }
@@ -89,13 +73,19 @@ public class ReservationsController {
         modelAndView.addObject("userName", principal.getName());
 
         modelAndView.addObject("bodyContent", "reservations-all");
+
+
+
         if(roomName=="" && date!="") {
-            List<Reservation> reservations = this.reservationsService.findReservationsByDate(date);
+            DateTime dateTime = new DateTime(date.replace("/","-")+"T00:00:00-00:00");
+            List<Reservation> reservations = this.reservationsService.findReservationsByDate(dateTime);
             Map<String, List<Reservation>> roomsReservation = reservations.stream().collect(Collectors.groupingBy(a -> a.getRoom().getName()));
             modelAndView.addObject("roomReservations", roomsReservation);
         }
         else if(roomName!="" && date!=""){
-            List<Reservation> reservations = this.reservationsService.findReservationsByDateAndRoomName(date,roomName);
+
+            List<Reservation> rrr = this.reservationsService.findAllReservations();
+            List<Reservation> reservations = this.reservationsService.findReservationsByDateAndRoom(date.replace("/","-"),roomName);
             Map<String, List<Reservation>> roomsReservation = reservations.stream().collect(Collectors.groupingBy(a -> a.getRoom().getName()));
             modelAndView.addObject("roomReservations", roomsReservation);
         }

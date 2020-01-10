@@ -65,7 +65,7 @@ public class MySimpleUrlAuthenticationSuccessHandler
         if (isUser) {
             return "/homepage.html";
         } else if (isAdmin) {
-            return "/console.html";
+            return "/rooms/new";
         } else {
             throw new IllegalStateException();
         }

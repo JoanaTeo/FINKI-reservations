@@ -28,7 +28,11 @@ dependencies {
     compile group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.3'
 
     compile('javax.xml.bind:jaxb-api:2.3.0')
-   // compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '2.2.0.RELEASE'
+    compile 'com.google.api-client:google-api-client:1.30.5'
+    // https://mvnrepository.com/artifact/com.google.apis/google-api-services-calendar
+    compile group: 'com.google.apis', name: 'google-api-services-calendar', version: 'v3-rev305-1.23.0'
+
+    // compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '2.2.0.RELEASE'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'mysql:mysql-connector-java'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'

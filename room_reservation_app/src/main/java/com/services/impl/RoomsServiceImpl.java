@@ -18,8 +18,8 @@ public class RoomsServiceImpl implements RoomsService {
     @Autowired
     RoomsRepository roomsRepository;
     @Override
-    public Room createRoom(String name, Integer seats, Building building) {
-        Room room = new Room(name,seats, building );
+    public Room createRoom(String name, Integer seats, Building building, String calendarId) {
+        Room room = new Room(name,seats, building,calendarId );
         this.roomsRepository.save(room);
         return room;
     }

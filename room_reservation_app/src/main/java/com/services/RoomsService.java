@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Service
 public interface RoomsService {
-    Room createRoom(String name, Integer seats, Building building);
+    Room createRoom(String name, Integer seats, Building building, String calendarId);
     void deleteRoom(String id);
     void updateRoom(String name, String newName);
     List<Room> getAllRooms();

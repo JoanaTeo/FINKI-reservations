@@ -14,6 +14,7 @@ $(function(){
         console.log("dsandiaphdah",recipient);
         var modal = $(this)
         modal.find('.modal-title').text(recipient)
+        modal.find('.nameRoom').attr("value",recipient)
     })
 
     $('.datepicker').datepicker({

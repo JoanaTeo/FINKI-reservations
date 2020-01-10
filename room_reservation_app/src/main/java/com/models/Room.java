@@ -8,7 +8,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.util.List;
 @AllArgsConstructor
-@NoArgsConstructor
+
 @Entity
 public class Room {
     @Id
@@ -18,13 +18,15 @@ public class Room {
     String name;
     Integer seats;
     Building building;
+    String calendarId;
     @OneToMany(mappedBy = "room")
     List<Reservation> reservations;
 
-    public Room(String name, Integer seats, Building building) {
+    public Room(String name, Integer seats, Building building, String calendarId) {
         this.name = name;
         this.seats = seats;
         this.building = building;
+        this.calendarId=calendarId;
     }
     public Room(){}
 
@@ -69,5 +71,13 @@ public class Room {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getCalendarId() {
+        return calendarId;
+    }
+
+    public void setCalendarId(String calendarId) {
+        this.calendarId = calendarId;
     }
 }

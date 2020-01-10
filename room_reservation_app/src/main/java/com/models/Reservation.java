@@ -1,11 +1,10 @@
 package com.models;
 
 
+import com.google.api.client.util.DateTime;
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
 public class Reservation {
@@ -13,20 +12,22 @@ public class Reservation {
     @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")
     String id;
-    Integer startDate;
-    String date;
-    Integer endDate;
+    DateTime startDate;
+    DateTime endDate;
+    ReservationDescription description;
+    String eventId;
     @ManyToOne
     Room room;
     @ManyToOne
     User user;
 
-    public Reservation(Integer startDate, String date, Integer endDate, Room room, User user) {
+    public Reservation(DateTime startDate, DateTime endDate, Room room, User user, ReservationDescription description, String eventId) {
         this.startDate = startDate;
-        this.date = date;
         this.endDate = endDate;
         this.room = room;
         this.user = user;
+        this.description =description;
+        this.eventId = eventId;
     }
     public Reservation(){}
 
@@ -39,27 +40,19 @@ public class Reservation {
         this.id = id;
     }
 
-    public Integer getStartDate() {
+    public DateTime getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Integer startDate) {
+    public void setStartDate(DateTime startDate) {
         this.startDate = startDate;
     }
 
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public Integer getEndDate() {
+    public DateTime getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Integer endDate) {
+    public void setEndDate(DateTime endDate) {
         this.endDate = endDate;
     }
 
@@ -77,5 +70,20 @@ public class Reservation {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public ReservationDescription getDescription() {
+        return description;
+    }
+
+    public void setDescription(ReservationDescription description) {
+        this.description = description;
+    }
+
+    public String getEventId() {
+        return eventId;
+    }
+    public void setEventId(String eventId) {
+        this.eventId = eventId;
     }
 }

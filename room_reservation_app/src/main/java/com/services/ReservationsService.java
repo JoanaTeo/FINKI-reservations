@@ -1,9 +1,7 @@
 package com.services;
 
-import com.models.Building;
-import com.models.Reservation;
-import com.models.Room;
-import com.models.User;
+import com.google.api.client.util.DateTime;
+import com.models.*;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -12,13 +10,15 @@ import java.util.Optional;
 
 @Service
 public interface ReservationsService {
-    boolean makeReservation(String date, Integer start, Integer end, User user, String room);
+    boolean makeReservation(DateTime startDate, DateTime endDate, ReservationDescription description, User user, String room,String eventId);
     void deleteReservation(String id);
     List<Reservation> findAllReservations();
     List<Reservation> findReservationsByUser(String userId);
     Optional<Reservation> findReservationById(String id);
-    List<Reservation> findReservationsByDateAndRoomName(String date, String room);
-    List<Reservation> findReservationsByDate(String date);
+    List<Reservation> findReservationsByDateAndRoomName(DateTime date, String room);
+    List<Reservation> findReservationsByDate(DateTime date);
     List<Reservation> findReservationsByRoom( Room room);
     List<Reservation> findReservationsByBuilding(Building building);
+
+    List<Reservation> findReservationsByDateAndRoom(String replace, String roomName);
 }
