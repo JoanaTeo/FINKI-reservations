@@ -106,18 +106,18 @@ public class RoomsController {
         DateTime startDateTime = new DateTime("2020-01-11T09:00:00-07:00");
         DateTime endDateTime = new DateTime("2020-01-11T09:00:00-07:00");
         if(from<10){
-            startDateTime = new DateTime(date.replace("/","-")+"T0"+from+":00:00-00:00");
+            startDateTime = new DateTime(date.replace("/","-")+"T0"+from+":00:00-08:00");
         }
         else {
-             startDateTime = new DateTime(date.replace("/","-")+"T"+from+":00:00-00:00");
+             startDateTime = new DateTime(date.replace("/","-")+"T"+from+":00:00-08:00");
         }
         Integer to = from+1;
         if(from+1<10){
 
-             endDateTime = new DateTime(date.replace("/","-")+"T0"+to+":00:00-00:00");
+             endDateTime = new DateTime(date.replace("/","-")+"T0"+to+":00:00-08:00");
         }
         else {
-             endDateTime = new DateTime(date.replace("/","-")+"T"+to+":00:00-00:00");
+             endDateTime = new DateTime(date.replace("/","-")+"T"+to+":00:00-08:00");
         }
 
         String calendarId = this.roomsService.findByName(name).get(0).getCalendarId();
@@ -137,7 +137,7 @@ public class RoomsController {
                     .setTimeZone("America/Los_Angeles");
             event.setEnd(end);
 
-            String[] recurrence = new String[] {"RRULE:FREQ=DAILY;COUNT=2"};
+            String[] recurrence = new String[] {"RRULE:FREQ=DAILY;COUNT=1"};
             event.setRecurrence(Arrays.asList(recurrence));
 
             EventReminder[] reminderOverrides = new EventReminder[] {
