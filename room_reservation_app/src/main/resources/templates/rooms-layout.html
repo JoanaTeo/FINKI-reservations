@@ -33,7 +33,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="http://cijulenlinea.ucr.ac.cr/dev-users/">
-                <img  th:src="@{/finki_mk.png}" alt="LOGO" style="width: 200px;">
+                <a th:href="@{/rooms}"><img  th:src="@{/finki_mk.png}" alt="LOGO" style="width: 200px;"></a>
             </a>
         </div>
         <!-- Top Menu Items -->
@@ -54,10 +54,10 @@
                 <li>
                     <a data-toggle="collapse" data-target="#submenu-1"><i class="fa fa-fw fa-search"></i> Простории <i class="fa fa-fw fa-angle-down pull-right"></i></a>
                     <ul id="submenu-1" class="collapse">
-                        <li><a th:href="@{/reservations/building(building=TMF)}"><i class="fa fa-angle-double-right"></i> TМФ </a></li>
-                        <li><a th:href="@{/reservations/building(building=MF)}"><i class="fa fa-angle-double-right"></i> МФ</a></li>
-                        <li><a th:href="@{/reservations/building(building=B)}"><i class="fa fa-angle-double-right"></i> БАРАКИ </a></li>
-                        <li><a th:href="@{/reservations/building(building=LAB)}"><i class="fa fa-angle-double-right"></i> LAB </a></li>
+                        <li><a th:href="@{/reservations/building(building=ТМФ)}"><i class="fa fa-angle-double-right"></i> TМФ </a></li>
+                        <li><a th:href="@{/reservations/building(building=МФ)}"><i class="fa fa-angle-double-right"></i> МФ</a></li>
+                        <li><a th:href="@{/reservations/building(building=Бараки)}"><i class="fa fa-angle-double-right"></i> БАРАКИ </a></li>
+                        <li><a th:href="@{/reservations/building(building=Лаборатории)}"><i class="fa fa-angle-double-right"></i> ЛAБ </a></li>
                     </ul>
                 </li>
                 <li>

@@ -77,7 +77,7 @@ public class ReservationsController {
 
 
         if(roomName=="" && date!="") {
-            DateTime dateTime = new DateTime(date.replace("/","-")+"T00:00:00-00:00");
+            DateTime dateTime = new DateTime(date.replace("/","-")+"T00:00:00-08:00");
             List<Reservation> reservations = this.reservationsService.findReservationsByDate(dateTime);
             Map<String, List<Reservation>> roomsReservation = reservations.stream().collect(Collectors.groupingBy(a -> a.getRoom().getName()));
             modelAndView.addObject("roomReservations", roomsReservation);

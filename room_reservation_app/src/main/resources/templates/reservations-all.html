@@ -7,7 +7,7 @@
                 <label for="date">Датум</label>
                 <div class="input-group date datepicker" data-provide="datepicker" >
 
-                    <input type="text" class="form-control" name="date" id="date">
+                    <input type="text" class="form-control" name="date" id="date" autocomplete="off">
                     <div class="input-group-addon">
                         <span class="glyphicon glyphicon-th"></span>
                     </div>
@@ -43,7 +43,7 @@
                         <li class="list-group-item text-center" th:each="reservation : ${entry.value}" >
                             <p>
 
-                                <span><b th:text="${reservation.getStartDate()}"></b>h-<b th:text="${reservation.getEndDate()}"></b>h</span>
+                                <span><b th:text="${reservation.getStartTime()}"></b>h-<b th:text="${reservation.getEndTime()}"></b>h</span>
 
                                 <span>резервирано од</span>
                                 <span th:text="${reservation.getUser().getFirstName()}"></span>

@@ -1,7 +1,7 @@
 <form th:action="@{/rooms/create}" method="POST" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
     <div class="form-group">
-        <label for="roomBuilding">Room Name</label>
+        <label for="roomBuilding">Име на просторија</label>
         <select name="building"
                 id="roomBuilding"
                 required="true"
@@ -14,19 +14,19 @@
     </div>
 
     <div class="form-group">
-        <label for="roomName">Room Name</label>
+        <label for="roomName">Име на зграда</label>
         <input type="text"
                name="name"
                class="form-control"
                required="true"
-               id="roomName" placeholder="Room Name">
+               id="roomName" placeholder="">
     </div>
     <div class="form-group">
-        <label for="roomDescription">Room Seats</label>
+        <label for="roomDescription">Број на места</label>
         <input name="seats"
                   id="roomDescription"
                   class="form-control"
                     type="number">
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Креирај</button>
 </form>

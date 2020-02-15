@@ -9,15 +9,16 @@
                     <form method="get" th:action="@{/reservations/delete/{id}(id=${reservation.id})}">
                         <p>
 
-                <span><b th:text="${reservation.getStartDate()}"></b>h-</span>
+                <span><b th:text="${reservation.getStartTime()}"></b>h-</span>
 
-                            <span><b th:text="${reservation.getEndDate()}"></b>h</span>
+                            <span><b th:text="${reservation.getEndTime()}"></b>h</span>
                 <span>во</span>
                 <b th:text="${reservation.getRoom().getBuilding()}"></b>
-                <span>(во просторија <b th:text="${reservation.getRoom().getName()}"></b>)</span>
+                <span>(просторија <b th:text="${reservation.getRoom().getName()}"></b>)</span>
+                <span>на <b th:text="${reservation.getDate()}"></b></span>
 
                     <button
-                            onsubmit="return confirm('Are you sure that you want to delete this reservation?')"
+                            onsubmit="return confirm('Сигурно сакате да ја избришете оваа резервација')"
                             class="button btn-danger " style="float: right" >Избриши резервација</button>
                         </p>
                 </form>

@@ -6,8 +6,8 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum Building {
-    MF,
-    TMF,
+    МФ,
+    ТМФ,
     Бараки,
     Лаборатории
 }

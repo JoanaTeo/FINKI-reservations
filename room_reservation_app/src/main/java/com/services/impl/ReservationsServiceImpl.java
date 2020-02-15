@@ -78,19 +78,19 @@ public class ReservationsServiceImpl implements ReservationsService {
     @Override
     public List<Reservation> findReservationsByDateAndRoom(String date, String roomName) {
         List dates= new ArrayList();
-        dates.add(new DateTime(date.replace("/","-")+"T08:00:00-00:00"));
-        dates.add(new DateTime(date.replace("/","-")+"T09:00:00-00:00"));
-        dates.add(new DateTime(date.replace("/","-")+"T10:00:00-00:00"));
-        dates.add(new DateTime(date.replace("/","-")+"T11:00:00-00:00"));
-        dates.add(new DateTime(date.replace("/","-")+"T12:00:00-00:00"));
-        dates.add(new DateTime(date.replace("/","-")+"T13:00:00-00:00"));
-        dates.add(new DateTime(date.replace("/","-")+"T14:00:00-00:00"));
-        dates.add(new DateTime(date.replace("/","-")+"T15:00:00-00:00"));
-        dates.add(new DateTime(date.replace("/","-")+"T16:00:00-00:00"));
-        dates.add(new DateTime(date.replace("/","-")+"T17:00:00-00:00"));
-        dates.add(new DateTime(date.replace("/","-")+"T18:00:00-00:00"));
-        dates.add(new DateTime(date.replace("/","-")+"T19:00:00-00:00"));
-        dates.add(new DateTime(date.replace("/","-")+"T20:00:00-00:00"));
+        dates.add(new DateTime(date.replace("/","-")+"T08:00:00-08:00"));
+        dates.add(new DateTime(date.replace("/","-")+"T09:00:00-08:00"));
+        dates.add(new DateTime(date.replace("/","-")+"T10:00:00-08:00"));
+        dates.add(new DateTime(date.replace("/","-")+"T11:00:00-08:00"));
+        dates.add(new DateTime(date.replace("/","-")+"T12:00:00-08:00"));
+        dates.add(new DateTime(date.replace("/","-")+"T13:00:00-08:00"));
+        dates.add(new DateTime(date.replace("/","-")+"T14:00:00-08:00"));
+        dates.add(new DateTime(date.replace("/","-")+"T15:00:00-08:00"));
+        dates.add(new DateTime(date.replace("/","-")+"T16:00:00-08:00"));
+        dates.add(new DateTime(date.replace("/","-")+"T17:00:00-08:00"));
+        dates.add(new DateTime(date.replace("/","-")+"T18:00:00-08:00"));
+        dates.add(new DateTime(date.replace("/","-")+"T19:00:00-08:00"));
+        dates.add(new DateTime(date.replace("/","-")+"T20:00:00-08:00"));
 
         return this.reservationsRepository.findReservationsByDateAndRoom(dates,roomName);
     }

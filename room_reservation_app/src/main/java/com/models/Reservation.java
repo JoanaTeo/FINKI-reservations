@@ -86,4 +86,13 @@ public class Reservation {
     public void setEventId(String eventId) {
         this.eventId = eventId;
     }
+    public String getStartTime(){
+        return  this.startDate.toString().substring(11,16);
+    }
+    public String getEndTime(){
+        return  this.endDate.toString().substring(11,16);
+    }
+    public String getDate(){
+        return  this.startDate.toString().substring(0,10);
+    }
 }
